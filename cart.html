@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Frontend</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    
+     
+
+</head>
+<body class="cart-page">
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+            <img src="assets/image/Demo.png">
+        </div>
+        <ul class="nav_menu" id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Product</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="about.html">About</a></li>
+            
+        </ul>
+        <div class="right_Items">
+            <input type="text" placeholder="search" style="width:80px; height:25px; border-radius: 3px;"> 
+             <i class="fa-solid fa-cart-shopping "></i>
+             <a href="cart.html" class="cart-links">
+                <span id="cart-count">Cart(0)</span>
+             </a>
+            
+            <i class="fa-solid fa-bars" id="menu-toggle"></i>
+        </div>
+    </nav>
+    </header>
+<h2 style="text-align: center; color: aquamarine; text-decoration: dashed;">Your Cart</h2>
+<div id="cart-items"></div>
+
+<script>
+    function updateCartCount(count) {
+        let cartCountEl = document.getElementById("cart-count");
+        if (cartCountEl) {
+            cartCountEl.innerText = `Cart (${count})`;
+        }
+    }
+
+    // Load cart from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+        const container = document.getElementById("cart-items");
+        container.innerHTML = "";
+
+        if (cart.length === 0) {
+            container.innerHTML = "<p>Your cart is empty.</p>";
+            updateCartCount(0);
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            let div = document.createElement("div");
+            div.classList.add("cart-item");
+
+            div.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" width="50">
+                <span>${item.title} - $${item.price}</span>
+                <button onclick="removeFromCart(${index})">Remove</button>
+            `;
+
+            container.appendChild(div);
+        });
+
+        updateCartCount(cart.length);
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1); // Remove item from array
+        localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart
+        renderCart(); // Refresh the cart display
+        alert("Item removed from cart!");
+    }
+
+    renderCart();
+</script>
+</body>
+</html>
