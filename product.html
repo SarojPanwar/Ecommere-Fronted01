@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
      
-      <!-- <script src="scripts/app.js" defer></script> -->
+      <script src="scripts/product.js" defer></script>
+
+     <script src="scripts/app.js" defer></script>
 
 </head>
 <body>
@@ -27,13 +29,67 @@
         <div class="right_Items">
             <input type="text" placeholder="search" style="width:80px; height:25px; border-radius: 3px;"> 
              <i class="fa-solid fa-cart-shopping "></i>
-            <span>24</span>
+            <a href="cart.html" class="cart-des">
+                <span id="cart-count">Cart(0)</span>
+             </a>
             <i class="fa-solid fa-bars" id="menu-toggle"></i>
         </div>
     </nav>
     </header>
-    <section id="product_details"></section>
+    <section id="product_details">
+        
+    </section>
+    <!-- footer -->
+      <footer>
+        <div class="footer_container">
+            <div class="footer_section">
+            <h4>About Us</h4>
+            <p>We provide high-quality products at the best prices,<br> with fast delivery and excellent customer service.</p>
+            </div>
+            <!-- quick links -->
+            <div class="footer_section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Product</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            </div>
+              <!-- Customer Support -->
+           <div class="footer-section">
+            <h4>Customer Support</h4>
+            <ul>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Shipping Info</a></li>
+                <li><a href="#">Order Tracking</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+           </div>
+           <!-- Contact -->
+         <div class="footer-section">
+                  <h4>Contact Us</h4>
+                  <p>Email: support@yourstore.com</p>
+                  <p>Phone: +91-9876543210</p>
+                  <p>Mon - Fri: 9 AM - 6 PM</p>
+                  <div class="social-icons">
+                      <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                  </div>
+                </div> 
+        </div>
+        <div class="top_btn">
+            <a id="btn" href="#top">
+                <i class="fas fa-chevron-up text-dark"></i>
+            </a>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>© 2025 YourStore. All Rights Reserved.</p>  
+    </div> 
+      </footer>
 
-     <script src="scripts/product.js" defer></script>
+     
 </body>
 </html>

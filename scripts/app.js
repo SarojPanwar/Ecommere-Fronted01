@@ -8,7 +8,7 @@ menuToggle.addEventListener("click",()=>{
 
 // grid card
 const grid = document.getElementById("product_grid");
-
+if(grid){
 fetch("https://fakestoreapi.com/products")
 .then(res=>res.json())
 .then(products=>{
@@ -40,6 +40,8 @@ fetch("https://fakestoreapi.com/products")
     
 })
 .catch(err=> console.error("Error loading products;",err));
+}
+
 
 // Event delegation for all Add to Cart buttons
 document.addEventListener("click", e => {

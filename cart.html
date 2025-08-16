@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     
-     
+     <script src="scripts/app.js" defer></script> 
 
 </head>
 <body class="cart-page">
+    <section>
+    <div id="top"></div>
+    
     
     <header>
         <nav class="navbar">
@@ -21,7 +24,7 @@
         </div>
         <ul class="nav_menu" id="nav-menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
+            <li><a href="index.html">Product</a></li>
             <li><a href="contact.html">contact</a></li>
             <li><a href="about.html">About</a></li>
             
@@ -40,6 +43,16 @@
 <h2 style="text-align: center; color: aquamarine; text-decoration: dashed;">Your Cart</h2>
 <div id="cart-items"></div>
 
+
+<!-- footer -->
+      
+        <div class="top_btn">
+            <a id="btn" href="#top">
+                <i class="fas fa-chevron-up text-dark"></i>
+            </a>
+        </div>
+
+</section>
 <script>
     function updateCartCount(count) {
         let cartCountEl = document.getElementById("cart-count");
@@ -86,5 +99,7 @@
 
     renderCart();
 </script>
+
+
 </body>
 </html>
