@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <title>Checkout</title>
+  <style>
+    .checkout-container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+    .cart-summary {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 15px;
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+    }
+    #place-order {
+      padding: 12px 25px;
+      background: green;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+     <div id="top"></div>
+    <div class="wrapper">
+    <main>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+            <img src="assets/image/Demo.png">
+        </div>
+        <ul class="nav_menu" id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Product</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="about.html">About</a></li>
+            
+        </ul>
+        <div class="right_Items">
+            <input type="text" placeholder="search" style="width:80px; height:25px; border-radius: 3px;"> 
+             <i class="fa-solid fa-cart-shopping "></i>
+             <a href="cart.html" class="cart-des">
+                <span id="cart-count">Cart(0)</span>
+             </a>
+            
+            <i class="fa-solid fa-bars" id="menu-toggle"></i>
+        </div>
+    </nav>
+    </header>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary" id="cart-summary"></div>
+    <h3>Total: $<span id="total-price">0</span></h3>
+
+    <!-- User Info Form -->
+    <h3>Shipping Information</h3>
+    <form id="checkout-form">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" id="phone" required>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea id="address" required></textarea>
+      </div>
+
+      <h3>Payment Method</h3>
+      <div class="form-group">
+        <select id="payment" required>
+          <option value="" disabled selected>Select Payment Method</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Credit/Debit Card</option>
+        </select>
+      </div>
+
+      <button type="submit" id="place-order">Place Order</button>
+    </form>
+  </div>
+   </main>
+     <!-- footer -->
+      <footer>
+        <div class="footer_container">
+            <div class="footer_section">
+            <h4>About Us</h4>
+            <p>We provide high-quality products at the best prices,<br> with fast delivery and excellent customer service.</p>
+            </div>
+            <!-- quick links -->
+            <div class="footer_section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Product</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            </div>
+              <!-- Customer Support -->
+           <div class="footer-section">
+            <h4>Customer Support</h4>
+            <ul>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Shipping Info</a></li>
+                <li><a href="#">Order Tracking</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+           </div>
+           <!-- Contact -->
+         <div class="footer-section">
+                  <h4>Contact Us</h4>
+                  <p>Email: support@yourstore.com</p>
+                  <p>Phone: +91-9876543210</p>
+                  <p>Mon - Fri: 9 AM - 6 PM</p>
+                  <div class="social-icons">
+                      <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                  </div>
+                </div> 
+        </div>
+        <div class="top_btn">
+            <a id="btn" href="#top">
+                <i class="fas fa-chevron-up text-dark"></i>
+            </a>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>© 2025 YourStore. All Rights Reserved.</p>  
+    </div> 
+      </footer>
+  </div>
+  <script>
+    // Load cart
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartSummary = document.getElementById("cart-summary");
+    const totalPriceEl = document.getElementById("total-price");
+
+    let total = 0;
+    if (cart.length === 0) {
+      cartSummary.innerHTML = "<p>Your cart is empty.</p>";
+      document.getElementById("place-order").disabled = true;
+    } else {
+      cart.forEach(item => {
+        total += item.price * (item.quantity || 1);
+        cartSummary.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.title}">
+            <div>
+              <p>${item.title}</p>
+              <p>Price: $${item.price} × ${item.quantity || 1}</p>
+            </div>
+          </div>
+        `;
+      });
+      totalPriceEl.textContent = total.toFixed(2);
+    }
+
+    // Handle place order
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("✅ Order placed successfully!");
+      localStorage.removeItem("cart"); // Clear cart
+      window.location.href = "index.html"; // Redirect to thank-you page
+    });
+  </script>
+</body>
+</html>
