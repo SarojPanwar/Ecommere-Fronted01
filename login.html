@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Frontend</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    </head>
+    <body>
+      <!-- navbar -->
+      
+     <header >
+      <nav class="navbar">
+            <div class="logo">
+            <img src="assets/image/Demo.png">
+         </div>
+        <ul class="nav_menu" id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Product</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="about.html">About</a></li>
+            
+        </ul>
+    
+        <div class="right_Items">
+            <input type="text" placeholder="search" style="width:80px; height:35px; border-radius: 3px; text-align: center;"> 
+             <i class="fa-solid fa-cart-shopping "></i>
+            
+            <i class="fa-solid fa-bars" id="menu-toggle"></i>
+        </div>
+     </nav>
+    </header>
+     <section class="container_content">
+        <div class="container" id="form-container">
+            <form  class="form" id="login-form">
+              <h2>Login</h2>
+           
+            <input type="email" for="email" placeholder="Enter your email" required>
+            
+            
+            <input type="password" for="password"  placeholder="Enter your password" required>
+        
+          
+            <button type="submit" id="login">Login</button>  
+             <div class="toggle-text">
+             Don’t have an account? <a onclick="toggleForm()">Sign Up</a>
+            </div>
+            </form>
+        
+        <form  class="form" id="signup-form" style="display: none;">
+            <h3>SignUp</h3>
+            <input type="text" for="fullName" placeholder="Enter your fullName" required>
+            <input type="email" for="email" placeholder="Enter your email" required>
+            <input type="password" for="password" placeholder="Enter your password" required>
+            <input type="password" for="confirmPassword"  placeholder="confirm Password" required>
+            <button type="submit" id="signUp">SignUp</button>
+            <div class="toggle-text">
+            Already have an account? <a onclick="toggleForm()">Login</a>
+            </div>
+        </form>
+        </div>
+      </section> 
+        <script>
+            function toggleForm() {
+                const loginForm = document.getElementById("login-form");
+                const signupForm = document.getElementById("signup-form");
+          
+                if (loginForm.style.display === "none") {
+                  loginForm.style.display = "block";
+                  signupForm.style.display = "none";
+             }   else {
+                  loginForm.style.display = "none";
+                 signupForm.style.display = "block";
+                }
+            }
+
+           
+// ✅ Email Validation Function
+function isValidEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
+
+// ✅ Password Validation Function
+function isValidPassword(password) {
+  // at least 8 characters, 1 uppercase, 1 lowercase, 1 number
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  return passwordPattern.test(password);
+}
+
+// ✅ Signup Form Validation
+document.getElementById("signup-form")?.addEventListener("submit", function (e) {
+  e.preventDefault(); // prevent actual form submission
+
+  const fullName = this.querySelector("input[for='fullName']").value.trim();
+  const email = this.querySelector("input[for='email']").value.trim();
+  const password = this.querySelector("input[for='password']").value;
+  const confirmPassword = this.querySelector("input[for='confirmPassword']").value;
+
+  if (fullName.length < 3) {
+    alert("Full Name must be at least 3 characters.");
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    alert("Please enter a valid email.");
+    return;
+  }
+
+  if (!isValidPassword(password)) {
+    alert("Password must be at least 8 characters, include uppercase, lowercase, and a number.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  alert("✅ Signup Successful!");
+  this.submit(); // allow submission if everything is valid
+});
+
+// ✅ Login Form Validation
+document.getElementById("login-form")?.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = this.querySelector("input[for='email']").value.trim();
+  const password = this.querySelector("input[for='password']").value;
+
+  if (!isValidEmail(email)) {
+    alert("Please enter a valid email.");
+    return;
+  }
+
+  if (password.length < 8) {
+    alert("Password must be at least 8 characters.");
+    return;
+  }
+
+  alert("✅ Login Successful!");
+  this.submit();
+});
+
+
+        </script>
+    </body>
+</html>
